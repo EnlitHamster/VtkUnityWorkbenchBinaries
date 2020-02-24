@@ -1,3 +1,11 @@
-# VtkToUnityBinary
+# VtkToUnity Binary Plugin Build
 
-A binary build of the VtkToUnity plugin together with the modified VTK dlls which is ready to use for Windows 64bit development (currently)
+This is a build of the plugin developed by the 3D Heart project (http://www.3dheart.co.uk/) to enable VTK (https://vtk.org/) OpenGL rendering within a Unity (https://unity.com/) application. It is especially targets volume rendering or medical images, for example Computed Tomography (CT) or Magnetic Resonance Imaging (MRI).
+
+The plugin has been build for Windows 64bit development using Visual Studio 2017.
+
+For an example of this plugin in use please see https://gitlab.com/3dheart_public/vtktounity
+
+If you use this software, please kindly cite our work:
+
+* [Gavin Wheeler, Shujie Deng, Nicolas Toussaint, Kuberan Pushparajah, Julia A. Schnabel, John M. Simpson, and Alberto Gomez. *"Virtual interaction and visualisation of 3D medical imaging data with VTK and Unity."* Healthcare technology letters 5, no. 5 (2018): 148-153.](https://ieeexplore.ieee.org/abstract/document/8527762)

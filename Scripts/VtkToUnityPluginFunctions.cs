@@ -150,6 +150,15 @@ namespace ThreeDeeHeartPlugins
 			public static extern bool LoadNrrdVolume(
 				string nrrdPath);
 
+			// Load in an Nrrd volume 
+		#if (UNITY_IPHONE || UNITY_WEBGL) && !UNITY_EDITOR
+			[DllImport ("__Internal")]
+		#else
+			[DllImport ("VtkToUnityPlugin")]
+		#endif
+			public static extern bool CreatePaddingMask(
+				int paddingValue);
+
 			// Clear all loaded volumes
 		#if (UNITY_IPHONE || UNITY_WEBGL) && !UNITY_EDITOR
 			[DllImport ("__Internal")]
@@ -255,14 +264,6 @@ namespace ThreeDeeHeartPlugins
 			[DllImport ("VtkToUnityPlugin")]
 		#endif
 			public static extern void SetVolumeBrightnessFactor(float brightnessFactor);
-
-
-		#if (UNITY_IPHONE || UNITY_WEBGL) && !UNITY_EDITOR
-			[DllImport ("__Internal")]
-		#else
-			[DllImport ("VtkToUnityPlugin")]
-		#endif
-			public static extern void SetRenderGPU(bool gpu);
 
 
 		#if (UNITY_IPHONE || UNITY_WEBGL) && !UNITY_EDITOR

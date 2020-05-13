@@ -85,6 +85,14 @@ namespace ThreeDeeHeartPlugins
 			return pluginMatrix;
 		}
 
+		public enum DebugLogLevel
+		{
+			DebugImmediate = 0,
+			DebugLog,
+			DebugLogWarning,
+			DebugLogError
+		};
+
 		// enumerations for lighting
 		public enum LightColorType
 		{

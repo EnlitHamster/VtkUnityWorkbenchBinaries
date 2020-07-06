@@ -303,7 +303,15 @@ namespace ThreeDeeHeartPlugins
 		#else
 			[DllImport ("VtkToUnityPlugin")]
 		#endif
-			public static extern int AddMPR(int volumeId);
+			public static extern int AddMPR(int existingMprId);
+
+
+		#if (UNITY_IPHONE || UNITY_WEBGL) && !UNITY_EDITOR
+			[DllImport ("__Internal")]
+		#else
+			[DllImport("VtkToUnityPlugin")]
+		#endif
+			public static extern int AddMPRFlipped(int existingMprId, int flipAxis);
 
 
 		#if (UNITY_IPHONE || UNITY_WEBGL) && !UNITY_EDITOR

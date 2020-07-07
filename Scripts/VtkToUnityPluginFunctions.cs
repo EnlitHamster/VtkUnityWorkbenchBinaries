@@ -317,6 +317,14 @@ namespace ThreeDeeHeartPlugins
 		#if (UNITY_IPHONE || UNITY_WEBGL) && !UNITY_EDITOR
 			[DllImport ("__Internal")]
 		#else
+			[DllImport("VtkToUnityPlugin")]
+		#endif
+			public static extern void SetMPRWWWL(float windowWidth, float windowLevel);
+
+
+		#if (UNITY_IPHONE || UNITY_WEBGL) && !UNITY_EDITOR
+			[DllImport ("__Internal")]
+		#else
 			[DllImport ("VtkToUnityPlugin")]
 		#endif
 			public static extern int AddShapePrimitive(

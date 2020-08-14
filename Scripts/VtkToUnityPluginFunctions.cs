@@ -255,6 +255,37 @@ namespace ThreeDeeHeartPlugins
 		#else
 			[DllImport ("VtkToUnityPlugin")]
 		#endif
+			public static extern int AddTransferFunction();
+
+
+		#if (UNITY_IPHONE || UNITY_WEBGL) && !UNITY_EDITOR
+			[DllImport ("__Internal")]
+		#else
+			[DllImport ("VtkToUnityPlugin")]
+		#endif
+			public static extern int ResetTransferFunctions();
+
+
+
+		#if (UNITY_IPHONE || UNITY_WEBGL) && !UNITY_EDITOR
+			[DllImport ("__Internal")]
+		#else
+			[DllImport ("VtkToUnityPlugin")]
+		#endif
+			public static extern void SetTransferFunctionPoint(
+				int transferFunctionIndex,
+				double windowFraction,
+				double red1,
+				double green1,
+				double blue1,
+				double opacity1);
+
+
+		#if (UNITY_IPHONE || UNITY_WEBGL) && !UNITY_EDITOR
+			[DllImport ("__Internal")]
+		#else
+			[DllImport ("VtkToUnityPlugin")]
+		#endif
 			public static extern void SetVolumeWWWL(float windowWidth, float windowLevel);
 
 

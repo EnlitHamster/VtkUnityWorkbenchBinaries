@@ -9,3 +9,7 @@ For an example of this plugin in use please see https://gitlab.com/3dheart_publi
 If you use this software, please kindly cite our work:
 
 * [Gavin Wheeler, Shujie Deng, Nicolas Toussaint, Kuberan Pushparajah, Julia A. Schnabel, John M. Simpson, and Alberto Gomez. *"Virtual interaction and visualisation of 3D medical imaging data with VTK and Unity."* Healthcare technology letters 5, no. 5 (2018): 148-153.](https://ieeexplore.ieee.org/abstract/document/8527762)
+
+### Acknowledgment
+
+This work was supported by the NIHR i4i funded 3D Heart project [II-LA-0716-20001]. This work was also supported by the Wellcome/EPSRC Centre for Medical Engineering [WT 203148/Z/16/Z]. The research was funded/supported by the National Institute for Health Research (NIHR) Biomedical Research Centre based at Guy's and St Thomas' NHS Foundation Trust and King's College London and supported by the NIHR Clinical Research Facility (CRF) at Guy's and St Thomas'. The views expressed are those of the author(s) and not necessarily those of the NHS, the NIHR or the Department of Health.

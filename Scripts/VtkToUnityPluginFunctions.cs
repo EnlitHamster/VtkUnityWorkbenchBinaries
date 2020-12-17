@@ -8,7 +8,7 @@ using System.Runtime.InteropServices;
 
 namespace ThreeDeeHeartPlugins
 {
-	static class VtkToUnityPlugin //: MonoBehaviour
+	public static class VtkToUnityPlugin //: MonoBehaviour
 	{
 		// array of floats (for rgba as well as xyz)
 		public struct Float4
@@ -247,13 +247,21 @@ namespace ThreeDeeHeartPlugins
 		#else
 			[DllImport ("VtkToUnityPlugin")]
 		#endif
-			public static extern void SetTransferFunctionIndex(int index);
+			public static extern int GetTransferFunctionIndex();
 
 
 		#if (UNITY_IPHONE || UNITY_WEBGL) && !UNITY_EDITOR
 			[DllImport ("__Internal")]
 		#else
 			[DllImport ("VtkToUnityPlugin")]
+		#endif
+			public static extern void SetTransferFunctionIndex(int index);
+
+
+		#if (UNITY_IPHONE || UNITY_WEBGL) && !UNITY_EDITOR
+			[DllImport ("__Internal")]
+		#else
+			[DllImport("VtkToUnityPlugin")]
 		#endif
 			public static extern int AddTransferFunction();
 
@@ -261,16 +269,15 @@ namespace ThreeDeeHeartPlugins
 		#if (UNITY_IPHONE || UNITY_WEBGL) && !UNITY_EDITOR
 			[DllImport ("__Internal")]
 		#else
-			[DllImport ("VtkToUnityPlugin")]
+			[DllImport("VtkToUnityPlugin")]
 		#endif
 			public static extern int ResetTransferFunctions();
-
 
 
 		#if (UNITY_IPHONE || UNITY_WEBGL) && !UNITY_EDITOR
 			[DllImport ("__Internal")]
 		#else
-			[DllImport ("VtkToUnityPlugin")]
+			[DllImport("VtkToUnityPlugin")]
 		#endif
 			public static extern void SetTransferFunctionPoint(
 				int transferFunctionIndex,
@@ -281,10 +288,10 @@ namespace ThreeDeeHeartPlugins
 				double opacity1);
 
 
-		#if (UNITY_IPHONE || UNITY_WEBGL) && !UNITY_EDITOR
+#if (UNITY_IPHONE || UNITY_WEBGL) && !UNITY_EDITOR
 			[DllImport ("__Internal")]
-		#else
-			[DllImport ("VtkToUnityPlugin")]
+#else
+		[DllImport ("VtkToUnityPlugin")]
 		#endif
 			public static extern void SetVolumeWWWL(float windowWidth, float windowLevel);
 

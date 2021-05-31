@@ -54,6 +54,38 @@ namespace VtkUnityWorkbench
             }
         }
 
+        public static Dictionary<string, Type> GetDescriptor(
+            int shapeId)
+        {
+            //StringBuilder buffer = new StringBuilder();
+            //VtkToUnityPlugin.GetDescriptor(shapeId, buffer);
+            //if (buffer.ToString().StartsWith("err"))
+            //{
+            //    string msg = buffer.ToString().Replace("err::(", "").Replace(")", "");
+            //    throw new VtkUnityFetchException(msg);
+            //}
+            //else
+            //{
+            //    Dictionary<string, Type> descriptor = new Dictionary<string, Type>();
+            //    string strDesc = buffer.ToString();
+            //    string[] attribs = strDesc.Split(',');
+            //    foreach (string attrib in attribs)
+            //    {
+            //        string[] pair = attrib.Split(':');
+            //        descriptor.Add(pair[0], Type.GetType(pair[1]));
+            //    }
+            //    return descriptor;
+            //}
+            Dictionary<string, Type> descriptor = new Dictionary<string, Type>();
+            descriptor.Add("Height", Type.GetType("System.Double"));
+            descriptor.Add("Radius", Type.GetType("System.Double"));
+            descriptor.Add("Resolution", Type.GetType("System.Int32"));
+            descriptor.Add("Capping", Type.GetType("System.Int32"));
+            descriptor.Add("Center", Type.GetType("VtkUnityWorkbench.Double3"));
+            descriptor.Add("Direction", Type.GetType("VtkUnityWorkbench.Double3"));
+            return descriptor;
+        }
+
         ///////////////////////////////////////////////////
         // Registration to the plugin for UI call
         public static void RegisterComponentFactory(

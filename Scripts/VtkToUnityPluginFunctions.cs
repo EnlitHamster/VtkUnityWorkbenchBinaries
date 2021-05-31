@@ -398,6 +398,14 @@ namespace ThreeDeeHeartPlugins
             [MarshalAs(UnmanagedType.LPStr)] string propertyName,
             [MarshalAs(UnmanagedType.LPStr)] string newValue);
 
+#if (UNITY_IPHONE || UNITY_WEBGL) && !UNITY_EDITOR
+        [DllImport ("__Internal")]
+#else
+        [DllImport("VtkToUnityPlugin", CallingConvention = CallingConvention.Cdecl)]
+#endif
+        public static extern void GetDescriptor(
+            int shapeId,
+            StringBuilder descriptor);
 
 #if (UNITY_IPHONE || UNITY_WEBGL) && !UNITY_EDITOR
 		[DllImport ("__Internal")]

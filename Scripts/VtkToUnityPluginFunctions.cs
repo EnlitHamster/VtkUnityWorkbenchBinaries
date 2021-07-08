@@ -369,10 +369,10 @@ namespace ThreeDeeHeartPlugins
 #if (UNITY_IPHONE || UNITY_WEBGL) && !UNITY_EDITOR
 		[DllImport ("__Internal")]
 #else
-        [DllImport("VtkToUnityPlugin")]
+        [DllImport("VtkToUnityPlugin", CallingConvention = CallingConvention.Cdecl)]
 #endif
         public static extern int AddShapePrimitive(
-            int shapeType,
+            [MarshalAs(UnmanagedType.LPStr)] string shapeType,
             Float4 rgbaColour,
             bool wireframe);
 
@@ -385,6 +385,7 @@ namespace ThreeDeeHeartPlugins
         public static extern void GetShapePrimitiveProperty(
             int shapeId,
             [MarshalAs(UnmanagedType.LPStr)] string propertyName,
+            [MarshalAs(UnmanagedType.LPStr)] string expectedReturnType,
             StringBuilder retValue);
 
 

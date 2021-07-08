@@ -17,11 +17,12 @@ namespace VtkUnityWorkbench
         // Getter for primitive attributes
         public static T GetProperty<T>(
             int shapeId,
-            string propertyName)
+            string propertyName,
+            string expectedReturn)
             where T : IConvertible
         {
             StringBuilder buffer = new StringBuilder();
-            VtkToUnityPlugin.GetShapePrimitiveProperty(shapeId, propertyName, buffer);
+            VtkToUnityPlugin.GetShapePrimitiveProperty(shapeId, propertyName, expectedReturn, buffer);
 
             if (buffer.ToString().StartsWith("err"))
             {

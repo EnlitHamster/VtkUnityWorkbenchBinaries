@@ -10,6 +10,13 @@ namespace VtkUnityWorkbench
 {
     public static class VtkUnityWorkbenchHelpers
     {
+        public static readonly string DOUBLE = "dbl";
+        public static readonly string DOUBLE3 = "dbl3";
+        public static readonly string STRING = "str";
+        public static readonly string BOOLEAN = "bool";
+        public static readonly string INTEGER = "int";
+
+
         public static T StringTo<T>(
             string val) 
             where T : IConvertible

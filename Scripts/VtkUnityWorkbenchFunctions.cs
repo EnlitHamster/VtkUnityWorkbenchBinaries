@@ -13,47 +13,60 @@ namespace VtkUnityWorkbench
     {
         private static Dictionary<string, IComponentFactory> sComponentFactories;
 
-        ///////////////////////////////////////////////////
-        // Getter for primitive attributes
-        public static T GetProperty<T>(
-            int shapeId,
-            string propertyName,
-            string expectedReturn)
-            where T : IConvertible
-        {
-            StringBuilder buffer = new StringBuilder();
-            VtkToUnityPlugin.GetShapePrimitiveProperty(shapeId, propertyName, expectedReturn, buffer);
+		///////////////////////////////////////////////////
+		// Getter for primitive attributes
+		public static T GetProperty<T>(
+			int shapeId,
+			string propertyName)
+			where T : IConvertible
+		{
+			string buffer = VtkToUnityPlugin.VtkResource_GetAttrAsString(shapeId, propertyName);
 
-            if (buffer.ToString().StartsWith("err"))
-            {
-                string msg = buffer.ToString().Replace("err::(", "").Replace(")", "");
-                throw new VtkUnityFetchException(msg);
-            }
-            else
-            {
-                string val = buffer.ToString().Replace("val::(", "").Replace(")", "");
-                return VtkUnityWorkbenchHelpers.StringTo<T>(val);
-            }
-        }
+			if (buffer == null)
+			{
+				if (VtkToUnityPlugin.VtkError_Occurred())
+				{
+					throw new VtkUnityFetchException(VtkToUnityPlugin.VtkError_Get());
+				}
+				else
+				{
+					throw new VtkUnityFetchException("Unknown Error");
+				}
+			}
+			else
+			{
+				return VtkUnityWorkbenchHelpers.StringTo<T>(buffer.ToString());
+			}
+		}
 
-        ///////////////////////////////////////////////////
-        // Setter for primitive attributes
-        public static void SetProperty<T>(
-            int shapeId,
-            string propertyName,
-            T newValue)
-            where T : IConvertible
-        {
-            try
-            {
-                string strNewValue = (string)Convert.ChangeType(newValue, typeof(string));
-                VtkToUnityPlugin.SetShapePrimitiveProperty(shapeId, propertyName, strNewValue);
-            }
-            catch (Exception)
-            {
-                throw new VtkUnityConversionException("string", typeof(T).ToString());
-            }
-        }
+		///////////////////////////////////////////////////
+		// Setter for primitive attributes
+		public static void SetProperty(
+			int shapeId,
+			string propertyName,
+			string format,
+			string newValue)
+		{
+			VtkToUnityPlugin.VtkResource_SetAttrFromString(shapeId, propertyName, format, newValue);
+		}
+
+		// Elegant, but unpractical
+        //public static void SetProperty<T>(
+        //    int shapeId,
+        //    string propertyName,
+        //    T newValue)
+        //    where T : IConvertible
+        //{
+        //    try
+        //    {
+        //        string strNewValue = DecorateSetString((string)Convert.ChangeType(newValue, typeof(string)));
+        //        VtkToUnityPlugin.SetShapePrimitiveProperty(shapeId, propertyName, strNewValue);
+        //    }
+        //    catch (Exception)
+        //    {
+        //        throw new VtkUnityConversionException("string", typeof(T).ToString());
+        //    }
+        //}
 
         public static Dictionary<string, Type> GetDescriptor(
             int shapeId)

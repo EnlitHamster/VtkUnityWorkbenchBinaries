@@ -371,42 +371,175 @@ namespace ThreeDeeHeartPlugins
 #else
         [DllImport("VtkToUnityPlugin", CallingConvention = CallingConvention.Cdecl)]
 #endif
-        public static extern int AddShapePrimitive(
+        public static extern int VtkResource_CallObjectAndShow(
             [MarshalAs(UnmanagedType.LPStr)] string shapeType,
             Float4 rgbaColour,
             bool wireframe);
 
 
 #if (UNITY_IPHONE || UNITY_WEBGL) && !UNITY_EDITOR
-        [DllImport ("__Internal")]
+		[DllImport("__Internal")
 #else
-        [DllImport("VtkToUnityPlugin", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("VtkToUnityPlugin", CallingConvention = CallingConvention.Cdecl)]
 #endif
-        public static extern void GetShapePrimitiveProperty(
-            int shapeId,
-            [MarshalAs(UnmanagedType.LPStr)] string propertyName,
-            [MarshalAs(UnmanagedType.LPStr)] string expectedReturnType,
-            StringBuilder retValue);
+		public static extern int VtkResource_CallObject(
+			[MarshalAs(UnmanagedType.LPStr)] string shapeType);
 
 
 #if (UNITY_IPHONE || UNITY_WEBGL) && !UNITY_EDITOR
-        [DllImport ("__Internal")]
+		[DllImport("__Internal")
 #else
-        [DllImport("VtkToUnityPlugin", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("VtkToUnityPlugin", CallingConvention = CallingConvention.Cdecl)]
 #endif
-        public static extern void SetShapePrimitiveProperty(
-            int shapeId,
-            [MarshalAs(UnmanagedType.LPStr)] string propertyName,
-            [MarshalAs(UnmanagedType.LPStr)] string newValue);
+		[return: MarshalAs(UnmanagedType.LPStr)]
+		public static extern string VtkResource_CallMethodAsString(
+			int rid,
+			[MarshalAs(UnmanagedType.LPStr)] string method,
+			[MarshalAs(UnmanagedType.LPStr)] string format,
+			IntPtr argv);
+
 
 #if (UNITY_IPHONE || UNITY_WEBGL) && !UNITY_EDITOR
-        [DllImport ("__Internal")]
+		[DllImport("__Internal")
 #else
-        [DllImport("VtkToUnityPlugin", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("VtkToUnityPlugin", CallingConvention = CallingConvention.Cdecl)]
 #endif
-        public static extern void GetDescriptor(
-            int shapeId,
-            StringBuilder descriptor);
+		public static extern int VtkResource_CallMethodAsVtkObject(
+			int rid,
+			[MarshalAs(UnmanagedType.LPStr)] string method,
+			[MarshalAs(UnmanagedType.LPStr)] string format,
+			[MarshalAs(UnmanagedType.LPStr)] string classname,
+			IntPtr argv);
+
+
+#if (UNITY_IPHONE || UNITY_WEBGL) && !UNITY_EDITOR
+		[DllImport("__Internal")
+#else
+		[DllImport("VtkToUnityPlugin", CallingConvention = CallingConvention.Cdecl)]
+#endif
+		public static extern void VtkResource_CallMethodAsVoid(
+			int rid,
+			[MarshalAs(UnmanagedType.LPStr)] string method,
+			[MarshalAs(UnmanagedType.LPStr)] string format,
+			IntPtr argv);
+
+
+#if (UNITY_IPHONE || UNITY_WEBGL) && !UNITY_EDITOR
+		[DllImport("__Internal")
+#else
+		[DllImport("VtkToUnityPlugin", CallingConvention = CallingConvention.Cdecl)]
+#endif
+		[return: MarshalAs(UnmanagedType.LPStr)]
+		public static extern string VtkResource_CallMethodPipedAsString(
+			int rid,
+			int methodc,
+			int formatc,
+			IntPtr methodv,
+			IntPtr formatv,
+			IntPtr argv);
+
+
+#if (UNITY_IPHONE || UNITY_WEBGL) && !UNITY_EDITOR
+		[DllImport("__Internal")
+#else
+		[DllImport("VtkToUnityPlugin", CallingConvention = CallingConvention.Cdecl)]
+#endif
+		public static extern int VtkResource_CallMethodPipedAsVtkObject(
+			int rid,
+			int methodc,
+			int formatc,
+			[MarshalAs(UnmanagedType.LPStr)] string classname,
+			IntPtr methodv,
+			IntPtr formatv,
+			IntPtr argv);
+
+
+#if (UNITY_IPHONE || UNITY_WEBGL) && !UNITY_EDITOR
+		[DllImport("__Internal")
+#else
+		[DllImport("VtkToUnityPlugin", CallingConvention = CallingConvention.Cdecl)]
+#endif
+		[return: MarshalAs(UnmanagedType.LPStr)]
+		public static extern void VtkResource_CallMethodPipedAsVoid(
+			int rid,
+			int methodc,
+			int formatc,
+			IntPtr methodv,
+			IntPtr formatv,
+			IntPtr argv);
+
+
+#if (UNITY_IPHONE || UNITY_WEBGL) && !UNITY_EDITOR
+		[DllImport("__Internal")
+#else
+		[DllImport("VtkToUnityPlugin", CallingConvention = CallingConvention.Cdecl)]
+#endif
+		public static extern void VtkResource_Connect(
+			[MarshalAs(UnmanagedType.LPStr)] string connectionType,
+			int sourceRid,
+			int targetRid);
+
+
+#if (UNITY_IPHONE || UNITY_WEBGL) && !UNITY_EDITOR
+		[DllImport("__Internal")
+#else
+		[DllImport("VtkToUnityPlugin", CallingConvention = CallingConvention.Cdecl)]
+#endif
+		public static extern void VtkResource_AddActor(
+			int rid,
+			Float4 rgbaColour,
+			bool wireframe);
+
+
+#if (UNITY_IPHONE || UNITY_WEBGL) && !UNITY_EDITOR
+		[DllImport("__Internal")]
+#else
+		[DllImport("VtkToUnityPlugin", CallingConvention = CallingConvention.Cdecl)]
+#endif
+		public static extern bool VtkError_Occurred();
+
+
+#if (UNITY_IPHONE || UNITY_WEBGL) && !UNITY_EDITOR
+		[DllImport("__Internal")]
+#else
+		[DllImport("VtkToUnityPlugin", CallingConvention = CallingConvention.Cdecl)]
+#endif
+		[return: MarshalAs(UnmanagedType.LPStr)]
+		public static extern string VtkError_Get();
+
+
+#if (UNITY_IPHONE || UNITY_WEBGL) && !UNITY_EDITOR
+		[DllImport("__Internal")]
+#else
+		[DllImport("VtkToUnityPlugin", CallingConvention = CallingConvention.Cdecl)]
+#endif
+		[return: MarshalAs(UnmanagedType.LPStr)]
+		public static extern string VtkResource_GetAttrAsString(
+			int shapeId,
+			[MarshalAs(UnmanagedType.LPStr)] string propertyName);
+
+
+#if (UNITY_IPHONE || UNITY_WEBGL) && !UNITY_EDITOR
+		[DllImport("__Internal")]
+#else
+		[DllImport("VtkToUnityPlugin", CallingConvention = CallingConvention.Cdecl)]
+#endif
+		public static extern void VtkResource_SetAttrFromString(
+			int shapeId,
+			[MarshalAs(UnmanagedType.LPStr)] string propertyName,
+			[MarshalAs(UnmanagedType.LPStr)] string format,
+			[MarshalAs(UnmanagedType.LPStr)] string newValue);
+
+
+#if (UNITY_IPHONE || UNITY_WEBGL) && !UNITY_EDITOR
+		[DllImport("__Internal")]
+#else
+		[DllImport("VtkToUnityPlugin", CallingConvention = CallingConvention.Cdecl)]
+#endif
+		[return: MarshalAs(UnmanagedType.LPStr)]
+		public static extern string VtkResource_GetDescriptor(
+			int shapeId);
+
 
 #if (UNITY_IPHONE || UNITY_WEBGL) && !UNITY_EDITOR
 		[DllImport ("__Internal")]
@@ -434,7 +567,6 @@ namespace ThreeDeeHeartPlugins
             int id,
             LightColorType lightColorType,
             Float4 rgbColor);
-
 
 
 #if (UNITY_IPHONE || UNITY_WEBGL) && !UNITY_EDITOR

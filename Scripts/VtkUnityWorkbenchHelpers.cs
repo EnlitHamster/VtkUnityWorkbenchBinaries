@@ -17,7 +17,24 @@ namespace VtkUnityWorkbench
         public static readonly string INTEGER = "int";
 
 
-        public static T StringTo<T>(
+		///////////////////////////////////////////////////
+		// Decoder for string arrays
+		public static IntPtr MarshalStringArray(
+			string[] arr)
+		{
+			IntPtr[] dataArr = new IntPtr[arr.Length];
+			for (int i = 0; i < arr.Length; ++i)
+			{
+				dataArr[i] = Marshal.StringToCoTaskMemAnsi(arr[i]);
+			}
+			IntPtr dataNative = Marshal.AllocCoTaskMem(Marshal.SizeOf(typeof(IntPtr)) * arr.Length);
+			Marshal.Copy(dataArr, 0, dataNative, dataArr.Length);
+
+			return dataNative;
+		}
+
+
+		public static T StringTo<T>(
             string val) 
             where T : IConvertible
         {
@@ -193,6 +210,7 @@ namespace VtkUnityWorkbench
 
         public Double3(string value)
         {
+			Debug.Log(value);
             string[] components = value.Split(',');
             x = Convert.ToDouble(components[0]);
             y = Convert.ToDouble(components[1]);
